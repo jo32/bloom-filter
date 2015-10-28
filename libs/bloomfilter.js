@@ -18,7 +18,7 @@ function __getType(obj) {
 }
 
 function __getDefaultHashFunction() {
-    var hashFunc = require('non-crypto-hash').createHash('murmurhash3').hash;
+    var hashFunc = require('non-crypto-hash/libs/murmurhash3').hash;
     return function(obj, seed) {
         if (__getType(obj) != 'String') {
             obj = obj.toString();
