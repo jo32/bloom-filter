@@ -4,7 +4,7 @@ This package contains bloom filter worked in both browser and Node.js, the hash 
 
 ## Installation
 
-    npm install bloom-filter
+    npm install bloom-filter-javascript
 
 ## Usage
 

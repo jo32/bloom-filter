@@ -1,5 +1,5 @@
 {
-  "name": "bloom-filter",
+  "name": "bloom-filter-javascript",
   "version": "0.1.0",
   "description": "Bloom Filter for Javascript",
   "main": "index.js",
