@@ -1,3 +1,3 @@
 var path = require('path');
 
-module.exports = require(path.join('./libs/bloomfilter');
+module.exports = require(path.join('./libs/bloomfilter'));
