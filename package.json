@@ -1,0 +1,23 @@
+{
+  "name": "bloom-filter",
+  "version": "0.1.0",
+  "description": "Bloom Filter for Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "keywords": [
+    "bloom",
+    "filter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jo32/bloom-filter.git"
+  },
+  "author": "jo32",
+  "license": "MIT",
+  "dependencies": {
+    "big-integer": "^1.6.3",
+    "non-crypto-hash": "^0.1.0"
+  }
+}
