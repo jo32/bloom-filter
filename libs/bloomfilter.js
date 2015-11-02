@@ -27,6 +27,28 @@ function __getDefaultHashFunction() {
     }
 }
 
+function __intToUnsignedHex(number) {
+    var temp;
+    var hexArray = [];
+    while ((temp = number & 0xffff) || number) {
+        temp = temp.toString(16);
+        temp = '0000'.slice(temp.length) + temp;
+        hexArray.push(temp);
+        number >>>= 16;
+    }
+    return hexArray.reverse().join('');
+}
+
+function __unsignedHexToInt(hexString) {
+    var tempN = 0;
+    var hexString = hexString.replace(/^0+/g, '');
+    for (var i = 0; i < hexString.length; i++) {
+        tempN <<= 4;
+        tempN |= parseInt(hexString[i], 16);
+    }
+    return tempN;
+};
+
 function __constructorWithOpts(opts) {
     if (!opts.elements && __getType(opts.elements) != "Array") {
         throw new Error("Option elements should not be empty and should be an Array.");
@@ -61,8 +83,9 @@ function __constructorWithOpts(opts) {
 
 function __constructorWithInputString(inputString, hashFunc) {
     hashFunc = hashFunc || __getDefaultHashFunction();
+    this.hash = hashFunc;
     var intArray = inputString.match(/.{1,8}/g).map(function(val) {
-        return parseInt(val, 16);
+        return __unsignedHexToInt(val);
     });
     var k = intArray[intArray.length - 2];
     var length = intArray[intArray.length - 1];
@@ -109,11 +132,11 @@ BloomFilter.prototype.has = function(obj) {
 
 BloomFilter.prototype.toString = function() {
     var hex = this.filter.map(function(val) {
-        var _n = val.toString(16);
+        var _n = __intToUnsignedHex(val);
         return "00000000".slice(_n.length) + _n;
     }).join('');
-    var _k = this.k.toString(16);
-    var _n = this.length.toString(16);
+    var _k = __intToUnsignedHex(this.k);
+    var _n = __intToUnsignedHex(this.length);
     hex += ("00000000".slice(_k.length) + _k);
     hex += ("00000000".slice(_n.length) + _n);
     return hex;

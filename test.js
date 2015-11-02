@@ -22,8 +22,11 @@ describe("BloomFilter", function() {
                 p: 0.0001
             });
             var inputString = bf.toString();
-            bf = new BloomFilter(inputString);
-            assert.equal(bf != null, true);
+            var bf2 = new BloomFilter(inputString);
+            assert.equal(bf2 != null, true);
+            elements.forEach(function(val) {
+                assert.equal(bf2.has(val), true);
+            });
         });
     });
 
